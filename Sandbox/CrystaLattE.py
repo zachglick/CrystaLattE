@@ -81,6 +81,7 @@ def input_parser(in_f_name):
     keywords["psi4_method"] = "HF/STO-3G"
     keywords["psi4_bsse"] = "cp"
     keywords["psi4_memory"] = "500 MB"
+    keywords["qca_server_uri"] = None
     keywords["verbose"] = 1
 
     with open(in_f_name, "r") as input_file:
@@ -1503,6 +1504,73 @@ def nmer2psithon(cif_output, nmers, keynmer, nmer, rminseps, rcomseps, psi4_meth
 
 
 # ======================================================================
+def qcarchive_energies(cif_output, nmers, keynmer, nmer, cpus, cle_run_type, psi4_method, psi4_bsse, psi4_memory, qca_client=None, verbose=0):
+    """
+    Arguments:
+    
+    """
+
+    # If the output is going to be kept, setup the filename.
+    if "quiet" or "test" in cle_run_type:
+        psi4.core.be_quiet()
+        
+    # If the output is not kept, do not print to screen.
+    else:
+        owd = os.getcwd()
+
+        p4folder = cif_output[:-4]
+        
+        try:
+            os.mkdir(p4folder)
+        except FileExistsError:
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print("WARNING: A folder with the same name as the CIF file already exists.")
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+            pass
+
+        os.chdir(p4folder)
+        
+        p4out = keynmer + ".dat"
+        psi4.core.set_output_file(p4out)
+        
+        os.chdir(owd)
+
+    psi_api_molecule = nmer2psiapimol(nmers, keynmer, nmer, verbose)
+    mymol = psi4.geometry(psi_api_molecule)
+    
+    # Set the number of threads to run Psi4.
+    psi4.core.set_num_threads(cpus)
+    
+    # Set Psi4 memory.
+    psi4.set_memory(psi4_memory)
+    
+    # Set Psi4 block of options.
+    psi4.set_options({'scf_type': 'df', 'mp2_type': 'df', 'cc_type': 'df', 'freeze_core': 'true', 'e_convergence': '8'})
+    
+    # Execute Psi4 energy calculations, unless running on test mode.
+
+    if "test" not in cle_run_type:
+        plan = psi4.energy(psi4_method, molecule=mymol, bsse_type=[psi4_bsse], return_plan=True, return_total_data=True)
+		plan.compute(qca_client)
+		qca_results = plan.get_results(qca_client)
+
+    # Get the non-additive n-body contribution, exclusive of all
+    # previous-body interactions.
+    #varstring = "{}-CORRECTED {}-BODY INTERACTION ENERGY".format(psi4_bsse.upper(), str(len(nmer["monomers"])))
+    
+    #n_body_energy = psi4.core.variable(varstring)
+    
+    #if len(nmer["monomers"]) > 2:
+    #    varstring = "{}-CORRECTED {}-BODY INTERACTION ENERGY".format(psi4_bsse.upper(), str(len(nmer["monomers"]) - 1))
+    #    n_minus_1_body_energy = psi4.core.variable(varstring)
+    #    nmer["nambe"] = n_body_energy - n_minus_1_body_energy
+
+    #else:
+    #    nmer["nambe"] = n_body_energy
+# ======================================================================
+
+
+# ======================================================================
 def psi4api_energies(cif_output, nmers, keynmer, nmer, cpus, cle_run_type, psi4_method, psi4_bsse, psi4_memory, verbose=0):
     """
     Arguments:
@@ -1572,7 +1640,7 @@ def psi4api_energies(cif_output, nmers, keynmer, nmer, cpus, cle_run_type, psi4_
 
 
 # ======================================================================
-def cle_manager(cif_output, nmers, cle_run_type, psi4_method, psi4_bsse, psi4_memory, verbose=0):
+def cle_manager(cif_output, nmers, cle_run_type, psi4_method, psi4_bsse, psi4_memory, qca_server_uri=None, verbose=0):
     """Manages which mode of CrystaLattE calculation will be employed.
     
     Global Variables:
@@ -1616,7 +1684,22 @@ def cle_manager(cif_output, nmers, cle_run_type, psi4_method, psi4_bsse, psi4_me
     # Produce a MAKEFP input file for gamess.
     if "makefp" in cle_run_type:
         monomer2makefp(cif_output, nmers["1mer-0"], verbose)
-   
+
+    # If running on QC Archive mode, initialize the QC Archive Client
+    qca_client = None
+    if "qcarchive" in cle_run_type:
+        
+        # TODO: Move this import to the top when QC Archive implementation is finished.
+        from qcfractal.interface import FractalClient
+        from qcfractal import FractalServer
+        
+        # The location of the Fractal Server is specified as the first argument in double quotes.
+        if not qca_server_uri:
+            qca_server_uri = "localhost:7777"
+
+        # Create a QC Archive client to connect to available resources.
+        qca_client = FractalClient(qca_server_uri, verify=False)
+
     # Get the keys of the N-mers dictionary, and put them on a list.
     nmer_keys = list(nmers.keys())
 
@@ -1658,9 +1741,13 @@ def cle_manager(cif_output, nmers, cle_run_type, psi4_method, psi4_bsse, psi4_me
         for r in nmer_min_com_separations:
             rcomseps += "{:6.3f} ".format(r * qcel.constants.bohr2angstroms)
 
-        # Produce Psithon inputs
+        # Produce Psithon inputs.
         if "psithon" in cle_run_type:
             nmer2psithon(cif_output, nmers, keynmer, nmer, rminseps, rcomseps, psi4_method, psi4_bsse, psi4_memory, verbose)
+
+        # Run energies in PSI4 API.
+        if "qcarchive" in cle_run_type:
+            qcarchive_energies(cif_output, nmers, keynmer, nmer, cpus, cle_run_type, psi4_method, psi4_bsse, psi4_memory, qca_server_uri, verbose)
 
         # Run energies in PSI4 API.
         else:
@@ -1744,7 +1831,7 @@ def print_end_msg(start, verbose=0):
 
 
 # ======================================================================
-def main(cif_input, cif_output="sc.xyz", cif_a=5, cif_b=5, cif_c=5, nmers_up_to=2, r_cut_com=10.0, r_cut_monomer=12.0, r_cut_dimer=10.0, r_cut_trimer=8.0, r_cut_tetramer=6.0, r_cut_pentamer=4.0, cle_run_type=["psi4api", "quiet"], psi4_method="HF/STO-3G", psi4_bsse="cp", psi4_memory="500 MB", verbose=1):
+def main(cif_input, cif_output="sc.xyz", cif_a=5, cif_b=5, cif_c=5, nmers_up_to=2, r_cut_com=10.0, r_cut_monomer=12.0, r_cut_dimer=10.0, r_cut_trimer=8.0, r_cut_tetramer=6.0, r_cut_pentamer=4.0, cle_run_type=["psi4api", "quiet"], psi4_method="HF/STO-3G", psi4_bsse="cp", psi4_memory="500 MB", qca_server_uri=None, verbose=1):
     """Takes a CIF file and computes the crystal lattice energy using a
     many-body expansion approach.
     """
@@ -1815,7 +1902,7 @@ def main(cif_input, cif_output="sc.xyz", cif_a=5, cif_b=5, cif_c=5, nmers_up_to=
     if verbose >= 2:
         print ("\nComputing interaction energies of N-mers:")
 
-    cle_manager(cif_output, nmers, cle_run_type, psi4_method, psi4_bsse, psi4_memory, verbose)
+    cle_manager(cif_output, nmers, cle_run_type, psi4_method, psi4_bsse, psi4_memory, qca_server_uri, verbose)
     # ------------------------------------------------------------------
     
     # Print the final results.
@@ -1848,6 +1935,7 @@ if __name__ == "__main__":
                 psi4_method="HF/STO-3G",
                 psi4_bsse="cp",
                 psi4_memory="500 MB",
+                qca_server_uri=None,
                 verbose=2)
 
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
