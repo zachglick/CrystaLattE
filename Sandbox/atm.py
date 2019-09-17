@@ -27,7 +27,7 @@ def atm_psithon2qmol(fname):
             save = True
 
     molecule = "\n".join(molecule)
-    print(molecule)
+    #print(molecule)
 
     qmol = qcdb.Molecule(molecule)
     
@@ -39,12 +39,12 @@ def atm_molecular(qmol, c9_abc):
     mol_b = qmol.extract_subsets(2)
     mol_c = qmol.extract_subsets(3)
 
-    print("mol_a\n")
-    print(mol_a)
-    print("mol_b\n")
-    print(mol_b)
-    print("mol_c\n")
-    print(mol_c)
+    #print("mol_a\n")
+    #print(mol_a)
+    #print("mol_b\n")
+    #print(mol_b)
+    #print("mol_c\n")
+    #print(mol_c)
 
     com_a = np.array(mol_a.center_of_mass())
     com_b = np.array(mol_b.center_of_mass())
@@ -98,10 +98,26 @@ def atm_energy(coord_a, coord_b, coord_c, c9_abc):
     
     return E_abc
 
-fname = "3mer-0+1+2.in"
 
-qmol_abc = atm_psithon2qmol(fname)
-print(atm_molecular(qmol_abc, 82657.65)) # c9_abc in a.u. from the JCP (2014).
+import os
+
+directory = os.getcwd()
+
+print("N-mer name                 ATM Energy (a.u.)")
+
+for filename in os.listdir(directory):
+    if filename.endswith(".in"):
+        qmol_abc = atm_psithon2qmol(filename)
+        atmE = atm_molecular(qmol_abc, 82657.65)
+        printout = "{:26} {}".format(filename, atmE)
+        print(printout)
+        continue
+    else:
+        continue
+
+
+#qmol_abc = atm_psithon2qmol(fname)
+#print(atm_molecular(qmol_abc, 82657.65)) # c9_abc in a.u. from the JCP (2014).
 
 c9_abc = 8.0/11.0
 
