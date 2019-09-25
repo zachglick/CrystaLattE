@@ -1551,8 +1551,8 @@ def qcarchive_energies(cif_output, nmers, keynmer, nmer, cpus, cle_run_type, psi
 
     if "test" not in cle_run_type:
         plan = psi4.energy(psi4_method, molecule=mymol, bsse_type=[psi4_bsse], return_plan=True, return_total_data=True)
-		plan.compute(qca_client)
-		qca_results = plan.get_results(qca_client)
+        plan.compute(qca_client)
+        qca_results = plan.get_results(qca_client)
 
     # Get the non-additive n-body contribution, exclusive of all
     # previous-body interactions.
