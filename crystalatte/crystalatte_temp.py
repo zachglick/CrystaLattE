@@ -1712,7 +1712,8 @@ def nmer2psithon(cif_output, nmers, keynmer, nmer, rminseps, rcomseps, psi4_meth
 
 def gamessefp_mbe(fragment_potential, fragment_geometries, indices, keynmer, nmer):
 
-    fragment_geometry = """ $efrag\n iscrelec=0 iscrpol=1 iscrdisp=1 coord=cart\n"""
+    fragment_geometry = """ $efrag\n"""
+    fragment_geometry += """coord=cart\n"""
     for i in indices:
         fragment_geometry += fragment_geometries[i]
     fragment_geometry += """$end"""
@@ -1740,26 +1741,16 @@ def gamessefp_mbe(fragment_potential, fragment_geometries, indices, keynmer, nme
     efp_ene = res["return_result"]
     #pprint(res["extras"]["qcvars"])
 
-    efp_comps = np.array([float(res['extras']['qcvars']['EFP CHARGE TRANSFER ENERGY']),
-                          float(res['extras']['qcvars']['EFP DISPERSION ENERGY']),
-                          float(res['extras']['qcvars']['EFP ELECTROSTATIC ENERGY']),
-                          float(res['extras']['qcvars']['EFP POLARIZATION ENERGY']),
-                          float(res['extras']['qcvars']['EFP REPULSION ENERGY']),
-                          float(res['extras']['qcvars']['EFP TOTAL ENERGY'])])
-    print(efp_comps)
-    assert np.abs(np.sum(efp_comps[:-1]) - efp_ene) < 1e-7
-
-
     #print(f'computed interaction energy is {627.509*efp_ene:0.5f} kcal/mol')
-    return efp_ene, efp_comps
+    return efp_ene
 
 # ======================================================================
-def gamessefp_nambe(fragment_potential, fragment_orientation, nmers, keynmer):
-    #print('\nGAMESS EFP Calculation:', keynmer)
+def gamessefp_nambe(fragment_potential, fragment_orientation, nmer, keynmer):
+
     tstart = time.time()
 
-    # the nmer for calculating the non-additive nbody energy
-    nmer = nmers[keynmer]
+    ## the nmer for calculating the non-additive nbody energy
+    #nmer = nmers[keynmer]
 
     # the numer of monomers in this nmer
     count = len(nmer['monomers'])
@@ -1769,11 +1760,6 @@ def gamessefp_nambe(fragment_potential, fragment_orientation, nmers, keynmer):
     delimiters = nmer['delimiters']
     atoms_per_monomer = nmer['atoms_per_monomer']
     monomers = nmer['monomers']
-    #D = distance_matrix(coords, coords)[0]
-    #if count == 2:
-    #    print(np.min(D[0:12,12:24]))
-    #else:
-    #    print(np.min(D[0:12,12:24]), np.min(D[0:12,24:36]), np.min(D[12:24,24:36]))
 
     fragment_geometries = []
     for monomer_ind in range(count):
@@ -1801,25 +1787,28 @@ def gamessefp_nambe(fragment_potential, fragment_orientation, nmers, keynmer):
         fragment_geometries.append(fragment_geometry)
 
     if count == 2:
-        nambe, comps = gamessefp_mbe(fragment_potential, fragment_geometries, [0, 1], keynmer, nmer)
+        nambe = gamessefp_mbe(fragment_potential, fragment_geometries, [0, 1], keynmer, nmer)
     elif count == 3:
         e_abc = gamessefp_mbe(fragment_potential, fragment_geometries, [0, 1, 2], keynmer, nmer)
-        key_ab, key_ac, key_bc = f'2mer-{monomers[0]}+{monomers[1]}', f'2mer-{monomers[0]}+{monomers[2]}', f'2mer-{monomers[1]}+{monomers[2]}'
+        e_ab = gamessefp_mbe(fragment_potential, fragment_geometries, [0, 1], keynmer, nmer)
+        e_ac = gamessefp_mbe(fragment_potential, fragment_geometries, [0, 2], keynmer, nmer)
+        e_bc = gamessefp_mbe(fragment_potential, fragment_geometries, [1, 2], keynmer, nmer)
 
-        if key_ab in nmers:
-            e_ab = nmers[key_ab]['nambe']
-        else:
-            e_ab = gamessefp_mbe(fragment_potential, fragment_geometries, [0, 1], keynmer, nmer)
+        #key_ab, key_ac, key_bc = f'2mer-{monomers[0]}+{monomers[1]}', f'2mer-{monomers[0]}+{monomers[2]}', f'2mer-{monomers[1]}+{monomers[2]}'
+        #if key_ab in nmers:
+        #    e_ab = nmers[key_ab]['nambe']
+        #else:
+        #    e_ab = gamessefp_mbe(fragment_potential, fragment_geometries, [0, 1], keynmer, nmer)
 
-        if key_ac in nmers:
-            e_ac = nmers[key_ac]['nambe']
-        else:
-            e_ac = gamessefp_mbe(fragment_potential, fragment_geometries, [0, 2], keynmer, nmer)
+        #if key_ac in nmers:
+        #    e_ac = nmers[key_ac]['nambe']
+        #else:
+        #    e_ac = gamessefp_mbe(fragment_potential, fragment_geometries, [0, 2], keynmer, nmer)
 
-        if key_bc in nmers:
-            e_bc = nmers[key_bc]['nambe']
-        else:
-            e_bc = gamessefp_mbe(fragment_potential, fragment_geometries, [1, 2], keynmer, nmer)
+        #if key_bc in nmers:
+        #    e_bc = nmers[key_bc]['nambe']
+        #else:
+        #    e_bc = gamessefp_mbe(fragment_potential, fragment_geometries, [1, 2], keynmer, nmer)
         nambe = e_abc - e_ab - e_ac - e_bc
     else:
         exit()
@@ -1827,7 +1816,7 @@ def gamessefp_nambe(fragment_potential, fragment_orientation, nmers, keynmer):
     dt = time.time() - tstart
     print(f'{keynmer:20}   {dt:5.1f} (s)            {2625.5*nambe:9.5f} kJ/mol')
 
-    return nambe, comps
+    return nambe
 
     
 
@@ -2137,89 +2126,60 @@ def run_makefp(monomer):
 
     # TODO: charge, multiplicity, etc.
     mol = qcel.models.Molecule(symbols=monomer['elem'], geometry=monomer['coords'])
+    mol.pretty_print()
     fragment_orientation = distance_matrix(monomer['coords'][:3], monomer['coords'][:3])[0]
 
-    if True:
+    # small basis
+    inp_small = qcel.models.AtomicInput(
+        molecule=mol,
+        driver="energy",
+        model={"method": "hf-makefp", "basis": "N31"},
+        keywords={'basis__ngauss' : '6', 'basis__ndfunc' : '1', 'damp__ifttyp(1)' : '2,0', 'damp__thrsh' : '500.0'},
+    )
 
-        # small basis
-        inp = qcel.models.AtomicInput(
-            molecule=mol,
-            driver="energy",
-            model={"method": "hf-makefp", "basis": "N31"},
-            #keywords={'contrl__ispher' : '1', 'basis__ngauss' : '6', 'basis__ndfunc' : '1'},
-            keywords={'basis__ngauss' : '6', 'basis__ndfunc' : '1', 'damp__ifttyp(1)' : '2,0', 'damp__thrsh' : '500.0'},
-        )
+    # large basis
+    inp_large = qcel.models.AtomicInput(
+        molecule=mol,
+        driver="energy",
+        model={"method": "hf-makefp", "basis": "N311"},
+        keywords={'basis__ngauss' : '6', 'basis__npfunc': '2', 'basis__ndfunc' : '3', 'basis__nffunc' : '1', 'basis__diffs' : '.t.', 'basis__diffsp' : '.t.'},
+    )
 
-        ## large basis
-        #inp = qcel.models.AtomicInput(
-        #    molecule=mol,
-        #    driver="energy",
-        #    model={"method": "hf-makefp", "basis": "N311"},
-        #    keywords={'contrl__ispher' : '1', 'basis__ngauss' : '6', 'basis__npfunc': '2', 'basis__ndfunc' : '3', 'basis__nffunc' : '1', 'basis__diffs' : '.t.', 'basis__diffsp' : '.t.'},
-        #)
+    res_small = qcng.compute(inp_small, program="gamess", raise_error=True, return_dict=True, local_options={"ncores":6})
+    assert res_small["success"] is True
+    fragment_potential_small_lines = res_small["extras"]["outfiles"]["gamess.efp"].split('\n')
 
-        res = qcng.compute(inp, program="gamess", raise_error=True, return_dict=True, local_options={"ncores":6})
-        assert res["success"] is True
+    res_large = qcng.compute(inp_large, program="gamess", raise_error=True, return_dict=True, local_options={"ncores":6})
+    assert res_large["success"] is True
+    fragment_potential_large_lines = res_large["extras"]["outfiles"]["gamess.efp"].split('\n')
 
-        # read the .efp file generated by GAMESS for H2O
-        fragment_potential = res["extras"]["outfiles"]["gamess.efp"]
+    print(len(fragment_potential_small_lines))
+    print(len(fragment_potential_large_lines))
 
-        # remove the first two lines of the efp file
-        fragment_potential = '\n'.join(fragment_potential.split('\n')[2:])
+    ind1_small, ind1_large = 0, 0
 
-    else:
+    for i, line in enumerate(fragment_potential_small_lines):
+        if line.strip().startswith('POLARIZABLE POINTS'):
+            ind1_small = i
+    for i, line in enumerate(fragment_potential_large_lines):
+        if line.strip().startswith('POLARIZABLE POINTS'):
+            ind1_large = i
+    print(ind1_small, ind1_large)
 
-        # small basis
-        inp_small = qcel.models.AtomicInput(
-            molecule=mol,
-            driver="energy",
-            model={"method": "hf-makefp", "basis": "N31"},
-            keywords={'basis__ngauss' : '6', 'basis__ndfunc' : '1', 'damp__ifttyp(1)' : '2,0', 'damp__thrsh' : '500.0'},
-        )
+    ind2_small, ind2_large = 0, 0
 
-        # large basis
-        inp_large = qcel.models.AtomicInput(
-            molecule=mol,
-            driver="energy",
-            model={"method": "hf-makefp", "basis": "N311"},
-            keywords={'basis__ngauss' : '6', 'basis__npfunc': '2', 'basis__ndfunc' : '3', 'basis__nffunc' : '1', 'basis__diffs' : '.t.', 'basis__diffsp' : '.t.'},
-        )
+    for i, line in enumerate(fragment_potential_small_lines):
+        if line.strip().startswith('SCREEN2'):
+            ind2_small = i
+    for i, line in enumerate(fragment_potential_large_lines):
+        if line.strip().startswith('SCREEN2'):
+            ind2_large = i
+    print(ind2_small, ind2_large)
 
-        res_small = qcng.compute(inp_small, program="gamess", raise_error=True, return_dict=True, local_options={"ncores":6})
-        assert res_small["success"] is True
-        fragment_potential_small_lines = res_small["extras"]["outfiles"]["gamess.efp"].split('\n')
+    fragment_potential = fragment_potential_small_lines[2:ind1_small] + fragment_potential_large_lines[ind1_large:ind2_large] + fragment_potential_small_lines[ind2_small:]
 
-        res_large = qcng.compute(inp_large, program="gamess", raise_error=True, return_dict=True, local_options={"ncores":6})
-        assert res_large["success"] is True
-        fragment_potential_large_lines = res_large["extras"]["outfiles"]["gamess.efp"].split('\n')
-
-        print(len(fragment_potential_small_lines))
-        print(len(fragment_potential_large_lines))
-
-        ind1_small, ind1_large = 0, 0
-
-        for i, line in enumerate(fragment_potential_small_lines):
-            if line.strip().startswith('POLARIZABLE POINTS'):
-                ind1_small = i
-        for i, line in enumerate(fragment_potential_large_lines):
-            if line.strip().startswith('POLARIZABLE POINTS'):
-                ind1_large = i
-        print(ind1_small, ind1_large)
-
-        ind2_small, ind2_large = 0, 0
-
-        for i, line in enumerate(fragment_potential_small_lines):
-            if line.strip().startswith('SCREEN2'):
-                ind2_small = i
-        for i, line in enumerate(fragment_potential_large_lines):
-            if line.strip().startswith('SCREEN2'):
-                ind2_large = i
-        print(ind2_small, ind2_large)
-
-        fragment_potential = fragment_potential_small_lines[2:ind1_small] + fragment_potential_large_lines[ind1_large:ind2_large] + fragment_potential_small_lines[ind2_small:]
-
-        # remove the first two lines of the efp file
-        fragment_potential = '\n'.join(fragment_potential)
+    # remove the first two lines of the efp file
+    fragment_potential = '\n'.join(fragment_potential)
 
     # TODO remove this
     with open('zach_gamess.efp', 'w') as fp:
@@ -2259,158 +2219,92 @@ def cle_manager(cif_output, nmers, cle_run_type, psi4_method, psi4_bsse, psi4_me
         and minimum atomic separations; for the print_results function.
     """
 
+    assert "gamessefp" in cle_run_type
+
+    # Find out the number of CPUs in the local system.
+    cpus = multiprocessing.cpu_count()
+
     crystal_lattice_energy = 0.0
-    crystal_lattice_energy_comps = np.array([0.0]*6)
     results = []
+    csv_lines = []
+    csv_header = "N-mer Name,"\
+            + "Non-Additive MB Energy (kJ/mol),"\
+            + "Num. Rep. (#), N-mer Contribution (kJ/mol),"\
+            + "Partial Crys. Lattice Ener. (kJ/mol),"\
+            + "Calculation Priority (Arb. Units),"\
+            + "Minimum Monomer Separations (A)"
+    csv_lines.append(csv_header)
 
-    # If running on QC Archive mode, initialize the QC Archive Client
-    qca_client = None
-    if "qcarchive" in cle_run_type:
-        
-        # TODO: Move this import to the top when QC Archive implementation is finished.
-        from qcfractal.interface import FractalClient
-        from qcfractal import FractalServer
-        
-        # The location of the Fractal Server is specified as the first argument in double quotes.
-        if qca_server_uri is None:
-            qca_server_uri = "localhost:7777"
-
-        # Create a QC Archive client to connect to available resources.
-        print(qca_server_uri)
-        qca_client = FractalClient(qca_server_uri, verify=False)
-    # If running GAMESS EFP mode, create EFP potential of monomer
-    elif "gamessefp" in cle_run_type:
-        print('\nRunning MAKEFP on monomer ...')
-        tstart_makefp = time.time()
-        fragment_potential, fragment_orientation = run_makefp(nmers['1mer-0'])
-        dt_makefp = time.time() - tstart_makefp
-        print(f'... Done in {dt_makefp:.1f} seconds\n')
-
+    print('\nRunning MAKEFP on monomer ...')
+    tstart_makefp = time.time()
+    fragment_potential, fragment_orientation = run_makefp(nmers['1mer-0'])
+    dt_makefp = time.time() - tstart_makefp
+    print(f'... Done in {dt_makefp:.1f} seconds\n')
 
     # Get the keys of the N-mers dictionary, and put them on a list.
     nmer_keys = list(nmers.keys())
+    nmer_keys = [nmer_key for nmer_key in nmer_keys if len(nmers[nmer_key]['monomers']) > 1]
 
     # Sort the list in decreasing priority order.
     nmer_keys.sort(key = lambda x: -nmers[x]['priority_cutoff'])
 
-    csv_lines = []
-    csv_lines.append('Name,Replicas,EFP_Elst,EFP_Rep,EFP_Pol,EFP_Disp,EFP_CT,EFP_TOT')
-
     # The next line was replaced to trigger the calculations in
     # priority order, and not in the order the N-mers were created.
     #for keynmer, nmer in nmers.items():
+
+    gamess_inps = [(fragment_potential, fragment_orientation, nmers[keynmer], keynmer) for keynmer in nmer_keys]
+    gamess_outs = multiprocessing.Pool(24).starmap(gamessefp_nambe, gamess_inps)
+
+    #for gamess_inp in gamess_inps:
+    #    #nmer = nmers[keynmer]
+    #    #nmer["nambe"] = gamessefp_nambe(fragment_potential, fragment_orientation, nmers[keynmer], keynmer)
+    #    gamess_outs.append(gamessefp_nambe(*gamess_inp))
+
+    for i, keynmer in enumerate(nmer_keys):
+        nmers[keynmer]["nambe"] = gamess_outs[i]
+
     for keynmer in nmer_keys:
 
         nmer = nmers[keynmer]
-        #pprint(nmer)
+        nmer["contrib"] = nmer["nambe"] * nmer["replicas"] / float(len(nmer["monomers"]))
+        crystal_lattice_energy += nmer["contrib"]
 
-        # Energies are not calculated for monomers. Rigid body approximation.
-        if len(nmer["monomers"]) == 1:
-            continue
-
-        # Find out the number of CPUs in the local system.
-        cpus = multiprocessing.cpu_count()
-        
-        # Start wall-clock timer.
-        energies_start = time.time()
-        
         # Generate a string with an ordered list of minimum separations
         # between atoms belonging to different monomers.
         rminseps = ""
-       
         nmer_min_monomer_separations = nmer["min_monomer_separations"]
         nmer_min_monomer_separations.sort()
-        
         for r in nmer_min_monomer_separations:
             rminseps += "{:6.3f} ".format(r * qcel.constants.bohr2angstroms)
-        
-        # Generate a string with an ordered list of minimum separations
-        # between the center of masses of the monomers.
-        rcomseps = ""
-       
-        nmer_min_com_separations = nmer["com_monomer_separations"]
-        nmer_min_com_separations.sort()
-        
-        for r in nmer_min_com_separations:
-            rcomseps += "{:6.3f} ".format(r * qcel.constants.bohr2angstroms)
 
-        # Produce Psithon inputs.
-        if "psithon" in cle_run_type:
-            nmer2psithon(cif_output, nmers, keynmer, nmer, rminseps, rcomseps, psi4_method, psi4_bsse, psi4_memory, verbose)
-
-        # Produce LibEFP inputs with non-embedded N-mers as fragments.
-        elif "libefpmbe" in cle_run_type:
-            nmer2libefpmbe(cif_output, nmers, keynmer, nmer, rminseps, rcomseps, verbose)
-
-        # Run energies in PSI4 API.
-        elif "qcarchive" in cle_run_type:
-            qcarchive_energies(cif_output, nmers, keynmer, nmer, cpus, cle_run_type, psi4_method, psi4_bsse, psi4_memory, qca_client, qca_mode,verbose)
-
-        # Create EFP potential of monomer and run fragments through qcengine
-        elif "gamessefp" in cle_run_type:
-            nmer["nambe"], nmer["nambe_comps"] = gamessefp_nambe(fragment_potential, fragment_orientation, nmers, keynmer)
-            csv_lines.append(f'{keynmer},'+
-                             f'{nmer["replicas"]},'+
-                             f'{nmer["nambe_comps"][2]},'+
-                             f'{nmer["nambe_comps"][4]},'+
-                             f'{nmer["nambe_comps"][3]},'+
-                             f'{nmer["nambe_comps"][1]},'+
-                             f'{nmer["nambe_comps"][0]},'+
-                             f'{nmer["nambe_comps"][5]}')
-
-        # Run energies in PSI4 API.
-        else:
-            psi4api_energies(cif_output, nmers, keynmer, nmer, cpus, cle_run_type, psi4_method, psi4_bsse, psi4_memory, verbose)
-
-        nmer["contrib"] = nmer["nambe"] * nmer["replicas"] / float(len(nmer["monomers"]))
-        nmer["contrib_comps"] = nmer["nambe_comps"] * nmer["replicas"] / float(len(nmer["monomers"]))
-        crystal_lattice_energy += nmer["contrib"]
-        crystal_lattice_energy_comps += nmer["contrib_comps"]
-
-        # Stop wall-clock timer.
-        energies_end = time.time()
-        
-        # Calculate execution time.
-        energies_wallclock = energies_end - energies_start
-
-        if ("test" in cle_run_type) or ("psithon" in cle_run_type) or ("libefpmbe" in cle_run_type):
-            nmer_result = "{:26} | {:>12} | {:>4} | {:>12} | {:>13} | {:12.6e} | {}".format(
-                    keynmer,
-                    "Not Computed", 
-                    nmer["replicas"],
-                    "Not Computed",
-                    "Not Computed",
-                    nmer["priority_cutoff"],
-                    rminseps)
-
-        else:
-            nmer_result = "{:26} | {:>12.8f} | {:>4} | {:>12.8f} | {:>13.8f} | {:12.6e} | {}".format(
-                    keynmer, 
-                    nmer["nambe"] * qcel.constants.hartree2kcalmol * qcel.constants.cal2J, 
-                    nmer["replicas"], 
-                    nmer["contrib"] * qcel.constants.hartree2kcalmol * qcel.constants.cal2J,
-                    crystal_lattice_energy * qcel.constants.hartree2kcalmol * qcel.constants.cal2J,
-                    nmer["priority_cutoff"],
-                    rminseps)
+        nmer_result = "{:26} | {:>12.8f} | {:>4} | {:>12.8f} | {:>13.8f} | {:12.6e} | {}".format(
+                keynmer, 
+                nmer["nambe"] * qcel.constants.hartree2kcalmol * qcel.constants.cal2J, 
+                nmer["replicas"], 
+                nmer["contrib"] * qcel.constants.hartree2kcalmol * qcel.constants.cal2J,
+                crystal_lattice_energy * qcel.constants.hartree2kcalmol * qcel.constants.cal2J,
+                nmer["priority_cutoff"],
+                rminseps)
         
         results.append(nmer_result)
 
-        if verbose >= 2:
+        nmer_csv = "{:},{:.8f},{:},{:.8f},{:.8f},{:.6e},{}".format(
+                keynmer,
+                nmers[keynmer]["nambe"] * qcel.constants.hartree2kcalmol * qcel.constants.cal2J,
+                nmers[keynmer]["replicas"],
+                nmers[keynmer]["contrib"] * qcel.constants.hartree2kcalmol * qcel.constants.cal2J,
+                crystal_lattice_energy * qcel.constants.hartree2kcalmol * qcel.constants.cal2J,
+                nmers[keynmer]["priority_min"],
+                rminseps)
+        
+        csv_lines.append(nmer_csv)
+ 
+    with open('Results.csv', 'w') as csvf:
+        for line in csv_lines:
+            csvf.write(line + "\n")
 
-            if "psi4api" in cle_run_type:
-                print("{} elapsed {:.2f} s processing on {} threads. Cumulative Lattice Energy = {:9.8f} kJ/mol".format(
-                    keynmer, 
-                    energies_wallclock, 
-                    cpus, 
-                    crystal_lattice_energy * qcel.constants.hartree2kcalmol * qcel.constants.cal2J))
 
-            if ("psithon" in cle_run_type) or ("libefpmbe" in cle_run_type):
-                print("{} written.".format(keynmer))
-    csv_lines = '\n'.join(csv_lines) 
-    print(csv_lines)
-    with open('csv_components', 'w') as fp:
-        fp.write(csv_lines)
-    print(crystal_lattice_energy_comps * qcel.constants.hartree2kcalmol * qcel.constants.cal2J)
+
     return crystal_lattice_energy, results
 # ======================================================================
 

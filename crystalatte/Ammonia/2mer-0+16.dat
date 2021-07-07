@@ -1,0 +1,1881 @@
+  Threads set to 12 by Python driver.
+
+  Memory set to 476.837 MiB by Python driver.
+
+Scratch directory: /scratch/glick/
+
+
+   ===> N-Body Interaction Abacus <===
+        BSSE Treatment:                     nocp
+        Number of 1-body computations:     2
+        Number of 2-body computations:     1
+
+   ==> N-Body: Now computing 1-body complexes <==
+
+
+       N-Body: Computing complex (1/2) with fragments (1,) in the basis of fragments (1,).
+
+
+Scratch directory: /scratch/glick/
+
+Scratch directory: /scratch/glick/
+
+*** tstart() called on ds10
+*** at Fri Jul 17 17:58:20 2020
+
+   => Loading Basis Set <=
+
+    Name: STO-3G
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1   entry N          line    71 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+    atoms 2-4 entry H          line    19 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+               by Justin Turney, Rob Parrish, Andy Simmonett
+                          and Daniel G. A. Smith
+                              RHF Reference
+                       12 Threads,    476 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         N           -1.681155160000    -1.681155160000    -1.681155160000    14.003074004430
+         H           -2.600263150000    -0.147368400000    -1.134342120000     1.007825032230
+         H           -1.134342120000    -2.600263150000    -0.147368400000     1.007825032230
+         H           -0.147368400000    -1.134342120000    -2.600263150000     1.007825032230
+
+  Running in c1 symmetry.
+
+  Rotational constants: A =      6.53545  B =      0.43458  C =      0.43458 [cm^-1]
+  Rotational constants: A = 195927.87342  B =  13028.43972  C =  13028.43972 [MHz]
+  Nuclear repulsion =   12.223291189591457
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 10
+  Nalpha       = 5
+  Nbeta        = 5
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is DF.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: STO-3G
+    Blend: STO-3G
+    Number of shells: 6
+    Number of basis function: 8
+    Number of Cartesian functions: 8
+    Spherical Harmonics?: true
+    Max angular momentum: 1
+
+   => Loading Basis Set <=
+
+    Name: (STO-3G AUX)
+    Role: JKFIT
+    Keyword: DF_BASIS_SCF
+    atoms 1   entry N          line   258 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+    atoms 2-4 entry H          line    18 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+
+  ==> Integral Setup <==
+
+  DFHelper Memory: AOs need 0.000 GiB; user supplied 0.349 GiB. Using in-core AOs.
+
+  ==> MemDFJK: Density-Fitted J/K Matrices <==
+
+    J tasked:                   Yes
+    K tasked:                   Yes
+    wK tasked:                   No
+    OpenMP threads:              12
+    Memory [MiB]:               357
+    Algorithm:                 Core
+    Schwarz Cutoff:           1E-12
+    Mask sparsity (%):       0.0000
+    Fitting Condition:        1E-10
+
+   => Auxiliary Basis Set <=
+
+  Basis Set: (STO-3G AUX)
+    Blend: DEF2-UNIVERSAL-JKFIT
+    Number of shells: 43
+    Number of basis function: 131
+    Number of Cartesian functions: 153
+    Spherical Harmonics?: true
+    Max angular momentum: 4
+
+  Minimum eigenvalue in the overlap matrix is 2.5446568092E-01.
+  Reciprocal condition number of the overlap matrix is 1.1493451973E-01.
+    Using symmetric orthogonalization.
+
+  ==> Pre-Iterations <==
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF (no occupation information).
+
+   -------------------------
+    Irrep   Nso     Nmo    
+   -------------------------
+     A          8       8 
+   -------------------------
+    Total       8       8
+   -------------------------
+
+  ==> Iterations <==
+
+                           Total Energy        Delta E     RMS |[F,P]|
+
+   @DF-RHF iter SAD:   -54.58562505888895   -5.45856e+01   0.00000e+00 
+   @DF-RHF iter   1:   -55.42957380036027   -8.43949e-01   2.08005e-02 DIIS
+   @DF-RHF iter   2:   -55.44933997593618   -1.97662e-02   3.93998e-03 DIIS
+   @DF-RHF iter   3:   -55.44993006318258   -5.90087e-04   8.13904e-04 DIIS
+   @DF-RHF iter   4:   -55.44996535350619   -3.52903e-05   7.59270e-06 DIIS
+   @DF-RHF iter   5:   -55.44996535935577   -5.84958e-09   9.86692e-07 DIIS
+  Energy and wave function converged.
+
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A    -15.300501     2A     -1.100051     3A     -0.584614  
+       4A     -0.584614     5A     -0.351735  
+
+    Virtual:                                                              
+
+       6A      0.663673     7A      0.759629     8A      0.759629  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [     5 ]
+
+  @DF-RHF Final Energy:   -55.44996535935577
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =             12.2232911895914569
+    One-Electron Energy =                 -99.5034369941988075
+    Two-Electron Energy =                  31.8301804452515711
+    Total Energy =                        -55.4499653593557724
+
+Computation Completed
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:   -15.6501      Y:   -15.6501      Z:   -15.6501
+
+  Electronic Dipole Moment: [e a0]
+     X:    16.0450      Y:    16.0450      Z:    16.0450
+
+  Dipole Moment: [e a0]
+     X:     0.3949      Y:     0.3949      Z:     0.3949     Total:     0.6840
+
+  Dipole Moment: [D]
+     X:     1.0038      Y:     1.0038      Z:     1.0038     Total:     1.7386
+
+
+*** tstop() called on ds10 at Fri Jul 17 17:58:21 2020
+Module time:
+	user time   =       7.42 seconds =       0.12 minutes
+	system time =       0.35 seconds =       0.01 minutes
+	total time  =          1 seconds =       0.02 minutes
+Total time:
+	user time   =     112.22 seconds =       1.87 minutes
+	system time =       5.14 seconds =       0.09 minutes
+	total time  =         18 seconds =       0.30 minutes
+
+       N-Body: Complex Energy (fragments = (1,), basis = (1,):   -55.44996535935577)
+
+       N-Body: Computing complex (2/2) with fragments (2,) in the basis of fragments (2,).
+
+
+Scratch directory: /scratch/glick/
+
+Scratch directory: /scratch/glick/
+
+*** tstart() called on ds10
+*** at Fri Jul 17 17:58:21 2020
+
+   => Loading Basis Set <=
+
+    Name: STO-3G
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1   entry N          line    71 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+    atoms 2-4 entry H          line    19 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+               by Justin Turney, Rob Parrish, Andy Simmonett
+                          and Daniel G. A. Smith
+                              RHF Reference
+                       12 Threads,    476 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         N            3.928511960000     3.166464780000     8.776131900000    14.003074004430
+         H            2.394725200000     3.713277820000     9.695239890000     1.007825032230
+         H            4.847619940000     4.700251540000     8.229318860000     1.007825032230
+         H            3.381698920000     2.247356790000     7.242345140000     1.007825032230
+
+  Running in c1 symmetry.
+
+  Rotational constants: A =      8.95445  B =      0.03483  C =      0.03478 [cm^-1]
+  Rotational constants: A = 268447.65245  B =   1044.09687  C =   1042.59595 [MHz]
+  Nuclear repulsion =   12.223291200851136
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 10
+  Nalpha       = 5
+  Nbeta        = 5
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is DF.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: STO-3G
+    Blend: STO-3G
+    Number of shells: 6
+    Number of basis function: 8
+    Number of Cartesian functions: 8
+    Spherical Harmonics?: true
+    Max angular momentum: 1
+
+   => Loading Basis Set <=
+
+    Name: (STO-3G AUX)
+    Role: JKFIT
+    Keyword: DF_BASIS_SCF
+    atoms 1   entry N          line   258 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+    atoms 2-4 entry H          line    18 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+
+  ==> Integral Setup <==
+
+  DFHelper Memory: AOs need 0.000 GiB; user supplied 0.349 GiB. Using in-core AOs.
+
+  ==> MemDFJK: Density-Fitted J/K Matrices <==
+
+    J tasked:                   Yes
+    K tasked:                   Yes
+    wK tasked:                   No
+    OpenMP threads:              12
+    Memory [MiB]:               357
+    Algorithm:                 Core
+    Schwarz Cutoff:           1E-12
+    Mask sparsity (%):       0.0000
+    Fitting Condition:        1E-10
+
+   => Auxiliary Basis Set <=
+
+  Basis Set: (STO-3G AUX)
+    Blend: DEF2-UNIVERSAL-JKFIT
+    Number of shells: 43
+    Number of basis function: 131
+    Number of Cartesian functions: 153
+    Spherical Harmonics?: true
+    Max angular momentum: 4
+
+  Minimum eigenvalue in the overlap matrix is 2.5446568031E-01.
+  Reciprocal condition number of the overlap matrix is 1.1493451935E-01.
+    Using symmetric orthogonalization.
+
+  ==> Pre-Iterations <==
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF (no occupation information).
+
+   -------------------------
+    Irrep   Nso     Nmo    
+   -------------------------
+     A          8       8 
+   -------------------------
+    Total       8       8
+   -------------------------
+
+  ==> Iterations <==
+
+                           Total Energy        Delta E     RMS |[F,P]|
+
+   @DF-RHF iter SAD:   -54.58562506169866   -5.45856e+01   0.00000e+00 
+   @DF-RHF iter   1:   -55.42957380015879   -8.43949e-01   2.08005e-02 DIIS
+   @DF-RHF iter   2:   -55.44933997573804   -1.97662e-02   3.93998e-03 DIIS
+   @DF-RHF iter   3:   -55.44993006298303   -5.90087e-04   8.13904e-04 DIIS
+   @DF-RHF iter   4:   -55.44996535330645   -3.52903e-05   7.59270e-06 DIIS
+   @DF-RHF iter   5:   -55.44996535915605   -5.84960e-09   9.86692e-07 DIIS
+  Energy and wave function converged.
+
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A    -15.300501     2A     -1.100051     3A     -0.584614  
+       4A     -0.584614     5A     -0.351735  
+
+    Virtual:                                                              
+
+       6A      0.663673     7A      0.759629     8A      0.759629  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [     5 ]
+
+  @DF-RHF Final Energy:   -55.44996535915605
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =             12.2232912008511363
+    One-Electron Energy =                 -99.5034370119318226
+    Two-Electron Energy =                  31.8301804519246332
+    Total Energy =                        -55.4499653591560531
+
+Computation Completed
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:    38.1236      Y:    32.8261      Z:    86.5998
+
+  Electronic Dipole Moment: [e a0]
+     X:   -38.5185      Y:   -32.4312      Z:   -86.9947
+
+  Dipole Moment: [e a0]
+     X:    -0.3949      Y:     0.3949      Z:    -0.3949     Total:     0.6840
+
+  Dipole Moment: [D]
+     X:    -1.0038      Y:     1.0038      Z:    -1.0038     Total:     1.7386
+
+
+*** tstop() called on ds10 at Fri Jul 17 17:58:22 2020
+Module time:
+	user time   =       5.74 seconds =       0.10 minutes
+	system time =       0.27 seconds =       0.00 minutes
+	total time  =          1 seconds =       0.02 minutes
+Total time:
+	user time   =     118.06 seconds =       1.97 minutes
+	system time =       5.41 seconds =       0.09 minutes
+	total time  =         19 seconds =       0.32 minutes
+
+       N-Body: Complex Energy (fragments = (2,), basis = (2,):   -55.44996535915605)
+
+   ==> N-Body: Now computing 2-body complexes <==
+
+
+       N-Body: Computing complex (1/1) with fragments (1, 2) in the basis of fragments (1, 2).
+
+
+Scratch directory: /scratch/glick/
+
+Scratch directory: /scratch/glick/
+
+*** tstart() called on ds10
+*** at Fri Jul 17 17:58:22 2020
+
+   => Loading Basis Set <=
+
+    Name: STO-3G
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1, 5     entry N          line    71 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+    atoms 2-4, 6-8 entry H          line    19 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+               by Justin Turney, Rob Parrish, Andy Simmonett
+                          and Daniel G. A. Smith
+                              RHF Reference
+                       12 Threads,    476 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         N           -1.681155160000    -1.681155160000    -1.681155160000    14.003074004430
+         H           -2.600263150000    -0.147368400000    -1.134342120000     1.007825032230
+         H           -1.134342120000    -2.600263150000    -0.147368400000     1.007825032230
+         H           -0.147368400000    -1.134342120000    -2.600263150000     1.007825032230
+         N            3.928511960000     3.166464780000     8.776131900000    14.003074004430
+         H            2.394725200000     3.713277820000     9.695239890000     1.007825032230
+         H            4.847619940000     4.700251540000     8.229318860000     1.007825032230
+         H            3.381698920000     2.247356790000     7.242345140000     1.007825032230
+
+  Running in c1 symmetry.
+
+  Rotational constants: A =      1.60616  B =      0.03261  C =      0.03221 [cm^-1]
+  Rotational constants: A =  48151.32107  B =    977.69739  C =    965.55852 [MHz]
+  Nuclear repulsion =   32.417636610277668
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 20
+  Nalpha       = 10
+  Nbeta        = 10
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is DF.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: STO-3G
+    Blend: STO-3G
+    Number of shells: 12
+    Number of basis function: 16
+    Number of Cartesian functions: 16
+    Spherical Harmonics?: true
+    Max angular momentum: 1
+
+   => Loading Basis Set <=
+
+    Name: (STO-3G AUX)
+    Role: JKFIT
+    Keyword: DF_BASIS_SCF
+    atoms 1, 5     entry N          line   258 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+    atoms 2-4, 6-8 entry H          line    18 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+
+  ==> Integral Setup <==
+
+  DFHelper Memory: AOs need 0.001 GiB; user supplied 0.349 GiB. Using in-core AOs.
+
+  ==> MemDFJK: Density-Fitted J/K Matrices <==
+
+    J tasked:                   Yes
+    K tasked:                   Yes
+    wK tasked:                   No
+    OpenMP threads:              12
+    Memory [MiB]:               357
+    Algorithm:                 Core
+    Schwarz Cutoff:           1E-12
+    Mask sparsity (%):       9.3750
+    Fitting Condition:        1E-10
+
+   => Auxiliary Basis Set <=
+
+  Basis Set: (STO-3G AUX)
+    Blend: DEF2-UNIVERSAL-JKFIT
+    Number of shells: 86
+    Number of basis function: 262
+    Number of Cartesian functions: 306
+    Spherical Harmonics?: true
+    Max angular momentum: 4
+
+  Minimum eigenvalue in the overlap matrix is 2.5445727386E-01.
+  Reciprocal condition number of the overlap matrix is 1.1492994922E-01.
+    Using symmetric orthogonalization.
+
+  ==> Pre-Iterations <==
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF (no occupation information).
+
+   -------------------------
+    Irrep   Nso     Nmo    
+   -------------------------
+     A         16      16 
+   -------------------------
+    Total      16      16
+   -------------------------
+
+  ==> Iterations <==
+
+                           Total Energy        Delta E     RMS |[F,P]|
+
+   @DF-RHF iter SAD:  -109.17124923049279   -1.09171e+02   0.00000e+00 
+   @DF-RHF iter   1:  -110.85880283054006   -1.68755e+00   1.47365e-02 DIIS
+   @DF-RHF iter   2:  -110.89846997146975   -3.96671e-02   2.79275e-03 DIIS
+   @DF-RHF iter   3:  -110.89965496132346   -1.18499e-03   5.76312e-04 DIIS
+   @DF-RHF iter   4:  -110.89972572452726   -7.07632e-05   5.38955e-06 DIIS
+   @DF-RHF iter   5:  -110.89972573628691   -1.17597e-08   6.96155e-07 DIIS
+  Energy and wave function converged.
+
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A    -15.304178     2A    -15.302923     3A     -1.103680  
+       4A     -1.102483     5A     -0.588339     6A     -0.588084  
+       7A     -0.587002     8A     -0.586921     9A     -0.355200  
+      10A     -0.353969  
+
+    Virtual:                                                              
+
+      11A      0.659949    12A      0.661194    13A      0.755805  
+      14A      0.756192    15A      0.757198    16A      0.757338  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [    10 ]
+
+  @DF-RHF Final Energy:  -110.89972573628691
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =             32.4176366102776683
+    One-Electron Energy =                -214.8890912599111402
+    Two-Electron Energy =                  71.5717289133465613
+    Total Energy =                       -110.8997257362869107
+
+Computation Completed
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:    22.4736      Y:    17.1761      Z:    70.9498
+
+  Electronic Dipole Moment: [e a0]
+     X:   -22.4726      Y:   -16.3853      Z:   -70.9481
+
+  Dipole Moment: [e a0]
+     X:     0.0010      Y:     0.7908      Z:     0.0016     Total:     0.7908
+
+  Dipole Moment: [D]
+     X:     0.0025      Y:     2.0100      Z:     0.0041     Total:     2.0100
+
+
+*** tstop() called on ds10 at Fri Jul 17 17:58:23 2020
+Module time:
+	user time   =       6.22 seconds =       0.10 minutes
+	system time =       0.26 seconds =       0.00 minutes
+	total time  =          1 seconds =       0.02 minutes
+Total time:
+	user time   =     124.37 seconds =       2.07 minutes
+	system time =       5.68 seconds =       0.09 minutes
+	total time  =         20 seconds =       0.33 minutes
+
+       N-Body: Complex Energy (fragments = (1, 2), basis = (1, 2):  -110.89972573628691)
+
+   ==> N-Body: Non-Counterpoise Corrected (NoCP) energies <==
+
+   n-Body     Total Energy [Eh]       I.E. [kcal/mol]      Delta [kcal/mol]
+        1     -110.899930718512        0.000000000000        0.000000000000
+        2     -110.899725736287        0.128628288090        0.128628288090
+
+   => Loading Basis Set <=
+
+    Name: DEF2-SVP
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1, 5     entry N          line   110 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-svp.gbs 
+    atoms 2-4, 6-8 entry H          line    15 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-svp.gbs 
+
+  Threads set to 12 by Python driver.
+
+  Memory set to 476.837 MiB by Python driver.
+
+Scratch directory: /scratch/glick/
+
+
+   ===> N-Body Interaction Abacus <===
+        BSSE Treatment:                     nocp
+        Number of 1-body computations:     2
+        Number of 2-body computations:     1
+
+   ==> N-Body: Now computing 1-body complexes <==
+
+
+       N-Body: Computing complex (1/2) with fragments (1,) in the basis of fragments (1,).
+
+
+Scratch directory: /scratch/glick/
+
+Scratch directory: /scratch/glick/
+
+*** tstart() called on ds10
+*** at Fri Jul 17 18:17:22 2020
+
+   => Loading Basis Set <=
+
+    Name: STO-3G
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1   entry N          line    71 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+    atoms 2-4 entry H          line    19 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+               by Justin Turney, Rob Parrish, Andy Simmonett
+                          and Daniel G. A. Smith
+                              RHF Reference
+                       12 Threads,    476 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         N           -1.681155160000    -1.681155160000    -1.681155160000    14.003074004430
+         H           -2.600263150000    -0.147368400000    -1.134342120000     1.007825032230
+         H           -1.134342120000    -2.600263150000    -0.147368400000     1.007825032230
+         H           -0.147368400000    -1.134342120000    -2.600263150000     1.007825032230
+
+  Running in c1 symmetry.
+
+  Rotational constants: A =      6.53545  B =      0.43458  C =      0.43458 [cm^-1]
+  Rotational constants: A = 195927.87342  B =  13028.43972  C =  13028.43972 [MHz]
+  Nuclear repulsion =   12.223291189591457
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 10
+  Nalpha       = 5
+  Nbeta        = 5
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is DF.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: STO-3G
+    Blend: STO-3G
+    Number of shells: 6
+    Number of basis function: 8
+    Number of Cartesian functions: 8
+    Spherical Harmonics?: true
+    Max angular momentum: 1
+
+   => Loading Basis Set <=
+
+    Name: (STO-3G AUX)
+    Role: JKFIT
+    Keyword: DF_BASIS_SCF
+    atoms 1   entry N          line   258 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+    atoms 2-4 entry H          line    18 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+
+  ==> Integral Setup <==
+
+  DFHelper Memory: AOs need 0.000 GiB; user supplied 0.349 GiB. Using in-core AOs.
+
+  ==> MemDFJK: Density-Fitted J/K Matrices <==
+
+    J tasked:                   Yes
+    K tasked:                   Yes
+    wK tasked:                   No
+    OpenMP threads:              12
+    Memory [MiB]:               357
+    Algorithm:                 Core
+    Schwarz Cutoff:           1E-12
+    Mask sparsity (%):       0.0000
+    Fitting Condition:        1E-10
+
+   => Auxiliary Basis Set <=
+
+  Basis Set: (STO-3G AUX)
+    Blend: DEF2-UNIVERSAL-JKFIT
+    Number of shells: 43
+    Number of basis function: 131
+    Number of Cartesian functions: 153
+    Spherical Harmonics?: true
+    Max angular momentum: 4
+
+  Minimum eigenvalue in the overlap matrix is 2.5446568092E-01.
+  Reciprocal condition number of the overlap matrix is 1.1493451973E-01.
+    Using symmetric orthogonalization.
+
+  ==> Pre-Iterations <==
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF (no occupation information).
+
+   -------------------------
+    Irrep   Nso     Nmo    
+   -------------------------
+     A          8       8 
+   -------------------------
+    Total       8       8
+   -------------------------
+
+  ==> Iterations <==
+
+                           Total Energy        Delta E     RMS |[F,P]|
+
+   @DF-RHF iter SAD:   -54.58562505888897   -5.45856e+01   0.00000e+00 
+   @DF-RHF iter   1:   -55.42957380036027   -8.43949e-01   2.08005e-02 DIIS
+   @DF-RHF iter   2:   -55.44933997593617   -1.97662e-02   3.93998e-03 DIIS
+   @DF-RHF iter   3:   -55.44993006318256   -5.90087e-04   8.13904e-04 DIIS
+   @DF-RHF iter   4:   -55.44996535350618   -3.52903e-05   7.59270e-06 DIIS
+   @DF-RHF iter   5:   -55.44996535935579   -5.84961e-09   9.86692e-07 DIIS
+  Energy and wave function converged.
+
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A    -15.300501     2A     -1.100051     3A     -0.584614  
+       4A     -0.584614     5A     -0.351735  
+
+    Virtual:                                                              
+
+       6A      0.663673     7A      0.759629     8A      0.759629  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [     5 ]
+
+  @DF-RHF Final Energy:   -55.44996535935579
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =             12.2232911895914569
+    One-Electron Energy =                 -99.5034369941988217
+    Two-Electron Energy =                  31.8301804452515817
+    Total Energy =                        -55.4499653593557866
+
+Computation Completed
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:   -15.6501      Y:   -15.6501      Z:   -15.6501
+
+  Electronic Dipole Moment: [e a0]
+     X:    16.0450      Y:    16.0450      Z:    16.0450
+
+  Dipole Moment: [e a0]
+     X:     0.3949      Y:     0.3949      Z:     0.3949     Total:     0.6840
+
+  Dipole Moment: [D]
+     X:     1.0038      Y:     1.0038      Z:     1.0038     Total:     1.7386
+
+
+*** tstop() called on ds10 at Fri Jul 17 18:17:23 2020
+Module time:
+	user time   =       7.89 seconds =       0.13 minutes
+	system time =       0.38 seconds =       0.01 minutes
+	total time  =          1 seconds =       0.02 minutes
+Total time:
+	user time   =     112.08 seconds =       1.87 minutes
+	system time =       5.23 seconds =       0.09 minutes
+	total time  =         18 seconds =       0.30 minutes
+
+       N-Body: Complex Energy (fragments = (1,), basis = (1,):   -55.44996535935579)
+
+       N-Body: Computing complex (2/2) with fragments (2,) in the basis of fragments (2,).
+
+
+Scratch directory: /scratch/glick/
+
+Scratch directory: /scratch/glick/
+
+*** tstart() called on ds10
+*** at Fri Jul 17 18:17:23 2020
+
+   => Loading Basis Set <=
+
+    Name: STO-3G
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1   entry N          line    71 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+    atoms 2-4 entry H          line    19 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+               by Justin Turney, Rob Parrish, Andy Simmonett
+                          and Daniel G. A. Smith
+                              RHF Reference
+                       12 Threads,    476 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         N            3.928511960000     3.166464780000     8.776131900000    14.003074004430
+         H            2.394725200000     3.713277820000     9.695239890000     1.007825032230
+         H            4.847619940000     4.700251540000     8.229318860000     1.007825032230
+         H            3.381698920000     2.247356790000     7.242345140000     1.007825032230
+
+  Running in c1 symmetry.
+
+  Rotational constants: A =      8.95445  B =      0.03483  C =      0.03478 [cm^-1]
+  Rotational constants: A = 268447.65245  B =   1044.09687  C =   1042.59595 [MHz]
+  Nuclear repulsion =   12.223291200851136
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 10
+  Nalpha       = 5
+  Nbeta        = 5
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is DF.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: STO-3G
+    Blend: STO-3G
+    Number of shells: 6
+    Number of basis function: 8
+    Number of Cartesian functions: 8
+    Spherical Harmonics?: true
+    Max angular momentum: 1
+
+   => Loading Basis Set <=
+
+    Name: (STO-3G AUX)
+    Role: JKFIT
+    Keyword: DF_BASIS_SCF
+    atoms 1   entry N          line   258 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+    atoms 2-4 entry H          line    18 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+
+  ==> Integral Setup <==
+
+  DFHelper Memory: AOs need 0.000 GiB; user supplied 0.349 GiB. Using in-core AOs.
+
+  ==> MemDFJK: Density-Fitted J/K Matrices <==
+
+    J tasked:                   Yes
+    K tasked:                   Yes
+    wK tasked:                   No
+    OpenMP threads:              12
+    Memory [MiB]:               357
+    Algorithm:                 Core
+    Schwarz Cutoff:           1E-12
+    Mask sparsity (%):       0.0000
+    Fitting Condition:        1E-10
+
+   => Auxiliary Basis Set <=
+
+  Basis Set: (STO-3G AUX)
+    Blend: DEF2-UNIVERSAL-JKFIT
+    Number of shells: 43
+    Number of basis function: 131
+    Number of Cartesian functions: 153
+    Spherical Harmonics?: true
+    Max angular momentum: 4
+
+  Minimum eigenvalue in the overlap matrix is 2.5446568031E-01.
+  Reciprocal condition number of the overlap matrix is 1.1493451935E-01.
+    Using symmetric orthogonalization.
+
+  ==> Pre-Iterations <==
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF (no occupation information).
+
+   -------------------------
+    Irrep   Nso     Nmo    
+   -------------------------
+     A          8       8 
+   -------------------------
+    Total       8       8
+   -------------------------
+
+  ==> Iterations <==
+
+                           Total Energy        Delta E     RMS |[F,P]|
+
+   @DF-RHF iter SAD:   -54.58562506169866   -5.45856e+01   0.00000e+00 
+   @DF-RHF iter   1:   -55.42957380015884   -8.43949e-01   2.08005e-02 DIIS
+   @DF-RHF iter   2:   -55.44933997573806   -1.97662e-02   3.93998e-03 DIIS
+   @DF-RHF iter   3:   -55.44993006298302   -5.90087e-04   8.13904e-04 DIIS
+   @DF-RHF iter   4:   -55.44996535330645   -3.52903e-05   7.59270e-06 DIIS
+   @DF-RHF iter   5:   -55.44996535915609   -5.84964e-09   9.86692e-07 DIIS
+  Energy and wave function converged.
+
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A    -15.300501     2A     -1.100051     3A     -0.584614  
+       4A     -0.584614     5A     -0.351735  
+
+    Virtual:                                                              
+
+       6A      0.663673     7A      0.759629     8A      0.759629  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [     5 ]
+
+  @DF-RHF Final Energy:   -55.44996535915609
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =             12.2232912008511363
+    One-Electron Energy =                 -99.5034370119318652
+    Two-Electron Energy =                  31.8301804519246403
+    Total Energy =                        -55.4499653591560886
+
+Computation Completed
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:    38.1236      Y:    32.8261      Z:    86.5998
+
+  Electronic Dipole Moment: [e a0]
+     X:   -38.5185      Y:   -32.4312      Z:   -86.9947
+
+  Dipole Moment: [e a0]
+     X:    -0.3949      Y:     0.3949      Z:    -0.3949     Total:     0.6840
+
+  Dipole Moment: [D]
+     X:    -1.0038      Y:     1.0038      Z:    -1.0038     Total:     1.7386
+
+
+*** tstop() called on ds10 at Fri Jul 17 18:17:24 2020
+Module time:
+	user time   =       5.39 seconds =       0.09 minutes
+	system time =       0.26 seconds =       0.00 minutes
+	total time  =          1 seconds =       0.02 minutes
+Total time:
+	user time   =     117.56 seconds =       1.96 minutes
+	system time =       5.50 seconds =       0.09 minutes
+	total time  =         19 seconds =       0.32 minutes
+
+       N-Body: Complex Energy (fragments = (2,), basis = (2,):   -55.44996535915609)
+
+   ==> N-Body: Now computing 2-body complexes <==
+
+
+       N-Body: Computing complex (1/1) with fragments (1, 2) in the basis of fragments (1, 2).
+
+
+Scratch directory: /scratch/glick/
+
+Scratch directory: /scratch/glick/
+
+*** tstart() called on ds10
+*** at Fri Jul 17 18:17:24 2020
+
+   => Loading Basis Set <=
+
+    Name: STO-3G
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1, 5     entry N          line    71 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+    atoms 2-4, 6-8 entry H          line    19 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+               by Justin Turney, Rob Parrish, Andy Simmonett
+                          and Daniel G. A. Smith
+                              RHF Reference
+                       12 Threads,    476 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         N           -1.681155160000    -1.681155160000    -1.681155160000    14.003074004430
+         H           -2.600263150000    -0.147368400000    -1.134342120000     1.007825032230
+         H           -1.134342120000    -2.600263150000    -0.147368400000     1.007825032230
+         H           -0.147368400000    -1.134342120000    -2.600263150000     1.007825032230
+         N            3.928511960000     3.166464780000     8.776131900000    14.003074004430
+         H            2.394725200000     3.713277820000     9.695239890000     1.007825032230
+         H            4.847619940000     4.700251540000     8.229318860000     1.007825032230
+         H            3.381698920000     2.247356790000     7.242345140000     1.007825032230
+
+  Running in c1 symmetry.
+
+  Rotational constants: A =      1.60616  B =      0.03261  C =      0.03221 [cm^-1]
+  Rotational constants: A =  48151.32107  B =    977.69739  C =    965.55852 [MHz]
+  Nuclear repulsion =   32.417636610277668
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 20
+  Nalpha       = 10
+  Nbeta        = 10
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is DF.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: STO-3G
+    Blend: STO-3G
+    Number of shells: 12
+    Number of basis function: 16
+    Number of Cartesian functions: 16
+    Spherical Harmonics?: true
+    Max angular momentum: 1
+
+   => Loading Basis Set <=
+
+    Name: (STO-3G AUX)
+    Role: JKFIT
+    Keyword: DF_BASIS_SCF
+    atoms 1, 5     entry N          line   258 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+    atoms 2-4, 6-8 entry H          line    18 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+
+  ==> Integral Setup <==
+
+  DFHelper Memory: AOs need 0.001 GiB; user supplied 0.349 GiB. Using in-core AOs.
+
+  ==> MemDFJK: Density-Fitted J/K Matrices <==
+
+    J tasked:                   Yes
+    K tasked:                   Yes
+    wK tasked:                   No
+    OpenMP threads:              12
+    Memory [MiB]:               357
+    Algorithm:                 Core
+    Schwarz Cutoff:           1E-12
+    Mask sparsity (%):       9.3750
+    Fitting Condition:        1E-10
+
+   => Auxiliary Basis Set <=
+
+  Basis Set: (STO-3G AUX)
+    Blend: DEF2-UNIVERSAL-JKFIT
+    Number of shells: 86
+    Number of basis function: 262
+    Number of Cartesian functions: 306
+    Spherical Harmonics?: true
+    Max angular momentum: 4
+
+  Minimum eigenvalue in the overlap matrix is 2.5445727386E-01.
+  Reciprocal condition number of the overlap matrix is 1.1492994922E-01.
+    Using symmetric orthogonalization.
+
+  ==> Pre-Iterations <==
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF (no occupation information).
+
+   -------------------------
+    Irrep   Nso     Nmo    
+   -------------------------
+     A         16      16 
+   -------------------------
+    Total      16      16
+   -------------------------
+
+  ==> Iterations <==
+
+                           Total Energy        Delta E     RMS |[F,P]|
+
+   @DF-RHF iter SAD:  -109.17124923049273   -1.09171e+02   0.00000e+00 
+   @DF-RHF iter   1:  -110.85880283054000   -1.68755e+00   1.47365e-02 DIIS
+   @DF-RHF iter   2:  -110.89846997146981   -3.96671e-02   2.79275e-03 DIIS
+   @DF-RHF iter   3:  -110.89965496132344   -1.18499e-03   5.76312e-04 DIIS
+   @DF-RHF iter   4:  -110.89972572452730   -7.07632e-05   5.38955e-06 DIIS
+   @DF-RHF iter   5:  -110.89972573628690   -1.17596e-08   6.96155e-07 DIIS
+  Energy and wave function converged.
+
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A    -15.304178     2A    -15.302923     3A     -1.103680  
+       4A     -1.102483     5A     -0.588339     6A     -0.588084  
+       7A     -0.587002     8A     -0.586921     9A     -0.355200  
+      10A     -0.353969  
+
+    Virtual:                                                              
+
+      11A      0.659949    12A      0.661194    13A      0.755805  
+      14A      0.756192    15A      0.757198    16A      0.757338  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [    10 ]
+
+  @DF-RHF Final Energy:  -110.89972573628690
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =             32.4176366102776683
+    One-Electron Energy =                -214.8890912599109981
+    Two-Electron Energy =                  71.5717289133464334
+    Total Energy =                       -110.8997257362868964
+
+Computation Completed
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:    22.4736      Y:    17.1761      Z:    70.9498
+
+  Electronic Dipole Moment: [e a0]
+     X:   -22.4726      Y:   -16.3853      Z:   -70.9481
+
+  Dipole Moment: [e a0]
+     X:     0.0010      Y:     0.7908      Z:     0.0016     Total:     0.7908
+
+  Dipole Moment: [D]
+     X:     0.0025      Y:     2.0100      Z:     0.0041     Total:     2.0100
+
+
+*** tstop() called on ds10 at Fri Jul 17 18:17:26 2020
+Module time:
+	user time   =       5.92 seconds =       0.10 minutes
+	system time =       0.27 seconds =       0.00 minutes
+	total time  =          2 seconds =       0.03 minutes
+Total time:
+	user time   =     123.58 seconds =       2.06 minutes
+	system time =       5.77 seconds =       0.10 minutes
+	total time  =         21 seconds =       0.35 minutes
+
+       N-Body: Complex Energy (fragments = (1, 2), basis = (1, 2):  -110.89972573628690)
+
+   ==> N-Body: Non-Counterpoise Corrected (NoCP) energies <==
+
+   n-Body     Total Energy [Eh]       I.E. [kcal/mol]      Delta [kcal/mol]
+        1     -110.899930718512        0.000000000000        0.000000000000
+        2     -110.899725736287        0.128628288135        0.128628288135
+
+   => Loading Basis Set <=
+
+    Name: DEF2-SVP
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1, 5     entry N          line   110 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-svp.gbs 
+    atoms 2-4, 6-8 entry H          line    15 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-svp.gbs 
+
+  Threads set to 12 by Python driver.
+
+  Memory set to 476.837 MiB by Python driver.
+
+Scratch directory: /scratch/glick/
+
+
+   ===> N-Body Interaction Abacus <===
+        BSSE Treatment:                     nocp
+        Number of 1-body computations:     2
+        Number of 2-body computations:     1
+
+   ==> N-Body: Now computing 1-body complexes <==
+
+
+       N-Body: Computing complex (1/2) with fragments (1,) in the basis of fragments (1,).
+
+
+Scratch directory: /scratch/glick/
+
+Scratch directory: /scratch/glick/
+
+*** tstart() called on ds10
+*** at Fri Jul 17 18:27:19 2020
+
+   => Loading Basis Set <=
+
+    Name: STO-3G
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1   entry N          line    71 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+    atoms 2-4 entry H          line    19 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+               by Justin Turney, Rob Parrish, Andy Simmonett
+                          and Daniel G. A. Smith
+                              RHF Reference
+                       12 Threads,    476 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         N           -1.681155160000    -1.681155160000    -1.681155160000    14.003074004430
+         H           -2.600263150000    -0.147368400000    -1.134342120000     1.007825032230
+         H           -1.134342120000    -2.600263150000    -0.147368400000     1.007825032230
+         H           -0.147368400000    -1.134342120000    -2.600263150000     1.007825032230
+
+  Running in c1 symmetry.
+
+  Rotational constants: A =      6.53545  B =      0.43458  C =      0.43458 [cm^-1]
+  Rotational constants: A = 195927.87342  B =  13028.43972  C =  13028.43972 [MHz]
+  Nuclear repulsion =   12.223291189591457
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 10
+  Nalpha       = 5
+  Nbeta        = 5
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is DF.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: STO-3G
+    Blend: STO-3G
+    Number of shells: 6
+    Number of basis function: 8
+    Number of Cartesian functions: 8
+    Spherical Harmonics?: true
+    Max angular momentum: 1
+
+   => Loading Basis Set <=
+
+    Name: (STO-3G AUX)
+    Role: JKFIT
+    Keyword: DF_BASIS_SCF
+    atoms 1   entry N          line   258 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+    atoms 2-4 entry H          line    18 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+
+  ==> Integral Setup <==
+
+  DFHelper Memory: AOs need 0.000 GiB; user supplied 0.349 GiB. Using in-core AOs.
+
+  ==> MemDFJK: Density-Fitted J/K Matrices <==
+
+    J tasked:                   Yes
+    K tasked:                   Yes
+    wK tasked:                   No
+    OpenMP threads:              12
+    Memory [MiB]:               357
+    Algorithm:                 Core
+    Schwarz Cutoff:           1E-12
+    Mask sparsity (%):       0.0000
+    Fitting Condition:        1E-10
+
+   => Auxiliary Basis Set <=
+
+  Basis Set: (STO-3G AUX)
+    Blend: DEF2-UNIVERSAL-JKFIT
+    Number of shells: 43
+    Number of basis function: 131
+    Number of Cartesian functions: 153
+    Spherical Harmonics?: true
+    Max angular momentum: 4
+
+  Minimum eigenvalue in the overlap matrix is 2.5446568092E-01.
+  Reciprocal condition number of the overlap matrix is 1.1493451973E-01.
+    Using symmetric orthogonalization.
+
+  ==> Pre-Iterations <==
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF (no occupation information).
+
+   -------------------------
+    Irrep   Nso     Nmo    
+   -------------------------
+     A          8       8 
+   -------------------------
+    Total       8       8
+   -------------------------
+
+  ==> Iterations <==
+
+                           Total Energy        Delta E     RMS |[F,P]|
+
+   @DF-RHF iter SAD:   -54.58562505888893   -5.45856e+01   0.00000e+00 
+   @DF-RHF iter   1:   -55.42957380036027   -8.43949e-01   2.08005e-02 DIIS
+   @DF-RHF iter   2:   -55.44933997593617   -1.97662e-02   3.93998e-03 DIIS
+   @DF-RHF iter   3:   -55.44993006318258   -5.90087e-04   8.13904e-04 DIIS
+   @DF-RHF iter   4:   -55.44996535350624   -3.52903e-05   7.59270e-06 DIIS
+   @DF-RHF iter   5:   -55.44996535935579   -5.84956e-09   9.86692e-07 DIIS
+  Energy and wave function converged.
+
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A    -15.300501     2A     -1.100051     3A     -0.584614  
+       4A     -0.584614     5A     -0.351735  
+
+    Virtual:                                                              
+
+       6A      0.663673     7A      0.759629     8A      0.759629  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [     5 ]
+
+  @DF-RHF Final Energy:   -55.44996535935579
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =             12.2232911895914569
+    One-Electron Energy =                 -99.5034369941988359
+    Two-Electron Energy =                  31.8301804452515782
+    Total Energy =                        -55.4499653593557937
+
+Computation Completed
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:   -15.6501      Y:   -15.6501      Z:   -15.6501
+
+  Electronic Dipole Moment: [e a0]
+     X:    16.0450      Y:    16.0450      Z:    16.0450
+
+  Dipole Moment: [e a0]
+     X:     0.3949      Y:     0.3949      Z:     0.3949     Total:     0.6840
+
+  Dipole Moment: [D]
+     X:     1.0038      Y:     1.0038      Z:     1.0038     Total:     1.7386
+
+
+*** tstop() called on ds10 at Fri Jul 17 18:27:20 2020
+Module time:
+	user time   =       7.53 seconds =       0.13 minutes
+	system time =       0.32 seconds =       0.01 minutes
+	total time  =          1 seconds =       0.02 minutes
+Total time:
+	user time   =     107.42 seconds =       1.79 minutes
+	system time =       4.35 seconds =       0.07 minutes
+	total time  =         18 seconds =       0.30 minutes
+
+       N-Body: Complex Energy (fragments = (1,), basis = (1,):   -55.44996535935579)
+
+       N-Body: Computing complex (2/2) with fragments (2,) in the basis of fragments (2,).
+
+
+Scratch directory: /scratch/glick/
+
+Scratch directory: /scratch/glick/
+
+*** tstart() called on ds10
+*** at Fri Jul 17 18:27:20 2020
+
+   => Loading Basis Set <=
+
+    Name: STO-3G
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1   entry N          line    71 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+    atoms 2-4 entry H          line    19 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+               by Justin Turney, Rob Parrish, Andy Simmonett
+                          and Daniel G. A. Smith
+                              RHF Reference
+                       12 Threads,    476 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         N            3.928511960000     3.166464780000     8.776131900000    14.003074004430
+         H            2.394725200000     3.713277820000     9.695239890000     1.007825032230
+         H            4.847619940000     4.700251540000     8.229318860000     1.007825032230
+         H            3.381698920000     2.247356790000     7.242345140000     1.007825032230
+
+  Running in c1 symmetry.
+
+  Rotational constants: A =      8.95445  B =      0.03483  C =      0.03478 [cm^-1]
+  Rotational constants: A = 268447.65245  B =   1044.09687  C =   1042.59595 [MHz]
+  Nuclear repulsion =   12.223291200851136
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 10
+  Nalpha       = 5
+  Nbeta        = 5
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is DF.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: STO-3G
+    Blend: STO-3G
+    Number of shells: 6
+    Number of basis function: 8
+    Number of Cartesian functions: 8
+    Spherical Harmonics?: true
+    Max angular momentum: 1
+
+   => Loading Basis Set <=
+
+    Name: (STO-3G AUX)
+    Role: JKFIT
+    Keyword: DF_BASIS_SCF
+    atoms 1   entry N          line   258 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+    atoms 2-4 entry H          line    18 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+
+  ==> Integral Setup <==
+
+  DFHelper Memory: AOs need 0.000 GiB; user supplied 0.349 GiB. Using in-core AOs.
+
+  ==> MemDFJK: Density-Fitted J/K Matrices <==
+
+    J tasked:                   Yes
+    K tasked:                   Yes
+    wK tasked:                   No
+    OpenMP threads:              12
+    Memory [MiB]:               357
+    Algorithm:                 Core
+    Schwarz Cutoff:           1E-12
+    Mask sparsity (%):       0.0000
+    Fitting Condition:        1E-10
+
+   => Auxiliary Basis Set <=
+
+  Basis Set: (STO-3G AUX)
+    Blend: DEF2-UNIVERSAL-JKFIT
+    Number of shells: 43
+    Number of basis function: 131
+    Number of Cartesian functions: 153
+    Spherical Harmonics?: true
+    Max angular momentum: 4
+
+  Minimum eigenvalue in the overlap matrix is 2.5446568031E-01.
+  Reciprocal condition number of the overlap matrix is 1.1493451935E-01.
+    Using symmetric orthogonalization.
+
+  ==> Pre-Iterations <==
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF (no occupation information).
+
+   -------------------------
+    Irrep   Nso     Nmo    
+   -------------------------
+     A          8       8 
+   -------------------------
+    Total       8       8
+   -------------------------
+
+  ==> Iterations <==
+
+                           Total Energy        Delta E     RMS |[F,P]|
+
+   @DF-RHF iter SAD:   -54.58562506169866   -5.45856e+01   0.00000e+00 
+   @DF-RHF iter   1:   -55.42957380015886   -8.43949e-01   2.08005e-02 DIIS
+   @DF-RHF iter   2:   -55.44933997573802   -1.97662e-02   3.93998e-03 DIIS
+   @DF-RHF iter   3:   -55.44993006298302   -5.90087e-04   8.13904e-04 DIIS
+   @DF-RHF iter   4:   -55.44996535330642   -3.52903e-05   7.59270e-06 DIIS
+   @DF-RHF iter   5:   -55.44996535915608   -5.84966e-09   9.86692e-07 DIIS
+  Energy and wave function converged.
+
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A    -15.300501     2A     -1.100051     3A     -0.584614  
+       4A     -0.584614     5A     -0.351735  
+
+    Virtual:                                                              
+
+       6A      0.663673     7A      0.759629     8A      0.759629  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [     5 ]
+
+  @DF-RHF Final Energy:   -55.44996535915608
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =             12.2232912008511363
+    One-Electron Energy =                 -99.5034370119318368
+    Two-Electron Energy =                  31.8301804519246190
+    Total Energy =                        -55.4499653591560815
+
+Computation Completed
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:    38.1236      Y:    32.8261      Z:    86.5998
+
+  Electronic Dipole Moment: [e a0]
+     X:   -38.5185      Y:   -32.4312      Z:   -86.9947
+
+  Dipole Moment: [e a0]
+     X:    -0.3949      Y:     0.3949      Z:    -0.3949     Total:     0.6840
+
+  Dipole Moment: [D]
+     X:    -1.0038      Y:     1.0038      Z:    -1.0038     Total:     1.7386
+
+
+*** tstop() called on ds10 at Fri Jul 17 18:27:21 2020
+Module time:
+	user time   =       5.31 seconds =       0.09 minutes
+	system time =       0.23 seconds =       0.00 minutes
+	total time  =          1 seconds =       0.02 minutes
+Total time:
+	user time   =     112.82 seconds =       1.88 minutes
+	system time =       4.59 seconds =       0.08 minutes
+	total time  =         19 seconds =       0.32 minutes
+
+       N-Body: Complex Energy (fragments = (2,), basis = (2,):   -55.44996535915608)
+
+   ==> N-Body: Now computing 2-body complexes <==
+
+
+       N-Body: Computing complex (1/1) with fragments (1, 2) in the basis of fragments (1, 2).
+
+
+Scratch directory: /scratch/glick/
+
+Scratch directory: /scratch/glick/
+
+*** tstart() called on ds10
+*** at Fri Jul 17 18:27:21 2020
+
+   => Loading Basis Set <=
+
+    Name: STO-3G
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1, 5     entry N          line    71 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+    atoms 2-4, 6-8 entry H          line    19 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/sto-3g.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+               by Justin Turney, Rob Parrish, Andy Simmonett
+                          and Daniel G. A. Smith
+                              RHF Reference
+                       12 Threads,    476 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c1
+    Full point group: C1
+
+    Geometry (in Bohr), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         N           -1.681155160000    -1.681155160000    -1.681155160000    14.003074004430
+         H           -2.600263150000    -0.147368400000    -1.134342120000     1.007825032230
+         H           -1.134342120000    -2.600263150000    -0.147368400000     1.007825032230
+         H           -0.147368400000    -1.134342120000    -2.600263150000     1.007825032230
+         N            3.928511960000     3.166464780000     8.776131900000    14.003074004430
+         H            2.394725200000     3.713277820000     9.695239890000     1.007825032230
+         H            4.847619940000     4.700251540000     8.229318860000     1.007825032230
+         H            3.381698920000     2.247356790000     7.242345140000     1.007825032230
+
+  Running in c1 symmetry.
+
+  Rotational constants: A =      1.60616  B =      0.03261  C =      0.03221 [cm^-1]
+  Rotational constants: A =  48151.32107  B =    977.69739  C =    965.55852 [MHz]
+  Nuclear repulsion =   32.417636610277668
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 20
+  Nalpha       = 10
+  Nbeta        = 10
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is DF.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: STO-3G
+    Blend: STO-3G
+    Number of shells: 12
+    Number of basis function: 16
+    Number of Cartesian functions: 16
+    Spherical Harmonics?: true
+    Max angular momentum: 1
+
+   => Loading Basis Set <=
+
+    Name: (STO-3G AUX)
+    Role: JKFIT
+    Keyword: DF_BASIS_SCF
+    atoms 1, 5     entry N          line   258 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+    atoms 2-4, 6-8 entry H          line    18 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-universal-jkfit.gbs 
+
+  ==> Integral Setup <==
+
+  DFHelper Memory: AOs need 0.001 GiB; user supplied 0.349 GiB. Using in-core AOs.
+
+  ==> MemDFJK: Density-Fitted J/K Matrices <==
+
+    J tasked:                   Yes
+    K tasked:                   Yes
+    wK tasked:                   No
+    OpenMP threads:              12
+    Memory [MiB]:               357
+    Algorithm:                 Core
+    Schwarz Cutoff:           1E-12
+    Mask sparsity (%):       9.3750
+    Fitting Condition:        1E-10
+
+   => Auxiliary Basis Set <=
+
+  Basis Set: (STO-3G AUX)
+    Blend: DEF2-UNIVERSAL-JKFIT
+    Number of shells: 86
+    Number of basis function: 262
+    Number of Cartesian functions: 306
+    Spherical Harmonics?: true
+    Max angular momentum: 4
+
+  Minimum eigenvalue in the overlap matrix is 2.5445727386E-01.
+  Reciprocal condition number of the overlap matrix is 1.1492994922E-01.
+    Using symmetric orthogonalization.
+
+  ==> Pre-Iterations <==
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF (no occupation information).
+
+   -------------------------
+    Irrep   Nso     Nmo    
+   -------------------------
+     A         16      16 
+   -------------------------
+    Total      16      16
+   -------------------------
+
+  ==> Iterations <==
+
+                           Total Energy        Delta E     RMS |[F,P]|
+
+   @DF-RHF iter SAD:  -109.17124923049276   -1.09171e+02   0.00000e+00 
+   @DF-RHF iter   1:  -110.85880283054007   -1.68755e+00   1.47365e-02 DIIS
+   @DF-RHF iter   2:  -110.89846997146975   -3.96671e-02   2.79275e-03 DIIS
+   @DF-RHF iter   3:  -110.89965496132345   -1.18499e-03   5.76312e-04 DIIS
+   @DF-RHF iter   4:  -110.89972572452727   -7.07632e-05   5.38955e-06 DIIS
+   @DF-RHF iter   5:  -110.89972573628692   -1.17597e-08   6.96155e-07 DIIS
+  Energy and wave function converged.
+
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A    -15.304178     2A    -15.302923     3A     -1.103680  
+       4A     -1.102483     5A     -0.588339     6A     -0.588084  
+       7A     -0.587002     8A     -0.586921     9A     -0.355200  
+      10A     -0.353969  
+
+    Virtual:                                                              
+
+      11A      0.659949    12A      0.661194    13A      0.755805  
+      14A      0.756192    15A      0.757198    16A      0.757338  
+
+    Final Occupation by Irrep:
+              A 
+    DOCC [    10 ]
+
+  @DF-RHF Final Energy:  -110.89972573628692
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =             32.4176366102776683
+    One-Electron Energy =                -214.8890912599110834
+    Two-Electron Energy =                  71.5717289133464902
+    Total Energy =                       -110.8997257362869249
+
+Computation Completed
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:    22.4736      Y:    17.1761      Z:    70.9498
+
+  Electronic Dipole Moment: [e a0]
+     X:   -22.4726      Y:   -16.3853      Z:   -70.9481
+
+  Dipole Moment: [e a0]
+     X:     0.0010      Y:     0.7908      Z:     0.0016     Total:     0.7908
+
+  Dipole Moment: [D]
+     X:     0.0025      Y:     2.0100      Z:     0.0041     Total:     2.0100
+
+
+*** tstop() called on ds10 at Fri Jul 17 18:27:23 2020
+Module time:
+	user time   =       5.50 seconds =       0.09 minutes
+	system time =       0.24 seconds =       0.00 minutes
+	total time  =          2 seconds =       0.03 minutes
+Total time:
+	user time   =     118.41 seconds =       1.97 minutes
+	system time =       4.84 seconds =       0.08 minutes
+	total time  =         21 seconds =       0.35 minutes
+
+       N-Body: Complex Energy (fragments = (1, 2), basis = (1, 2):  -110.89972573628692)
+
+   ==> N-Body: Non-Counterpoise Corrected (NoCP) energies <==
+
+   n-Body     Total Energy [Eh]       I.E. [kcal/mol]      Delta [kcal/mol]
+        1     -110.899930718512        0.000000000000        0.000000000000
+        2     -110.899725736287        0.128628288117        0.128628288117
+
+   => Loading Basis Set <=
+
+    Name: DEF2-SVP
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1, 5     entry N          line   110 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-svp.gbs 
+    atoms 2-4, 6-8 entry H          line    15 file /theoryfs2/ds/glick/gits/psi4/objdir/stage/share/psi4/basis/def2-svp.gbs 
+

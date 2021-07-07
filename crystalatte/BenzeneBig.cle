@@ -1,0 +1,19 @@
+# CrystaLattE Input Template:
+
+# Blank lines and lines starting with the hash character are omitted.
+# Padding blank spaces are also ignored.
+
+cif_input       = Benzene.cif
+cif_output      = Benzene.xyz
+cif_a           = 7
+cif_b           = 7
+cif_c           = 7
+nmers_up_to     = 3
+r_cut_com       = 90.0
+r_cut_monomer   = 15.0
+r_cut_dimer     = 90.0
+r_cut_trimer    = 90.0
+r_cut_tetramer  = 90.0
+r_cut_pentamer  = 90.0
+cle_run_type    = gamessefp
+verbose         = 2
